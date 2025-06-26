@@ -39,6 +39,20 @@ nav a {
 }
 .documents {
     text-align: center;
+    margin-top: 40px;
+    margin-bottom: 40px;
+    font-size: 18px;
+}
+.documents a {
+    text-decoration: underline;
+    color: #1d3d53;
+    font-weight: bold;
+    display: block;
+    margin: 10px 0;
+}
+
+.documents {
+    text-align: center;
     margin: 40px 10px;
 }
 .documents a {
